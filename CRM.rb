@@ -13,14 +13,18 @@ class CRM
 
 
 	def print_main_menu
-	  puts "Welcome to #{name}"
-	  puts "[1] Add a new contact"
-	  puts "[2] Modify an existing contact"
-	  puts "[3] Delete a contact"
-	  puts "[4] Display all the contacts"
-	  puts "[5] Display an attribute" 
-	  puts "[6] Exit"
-	  puts "Enter a number: "
+	  puts "Welcome to #{name}!"
+	  puts "\n"
+	  puts "To make your selection you may enter a number or simply type the word displayed in brackets.\n"
+	  puts "\n"
+	  puts "[1] (Add) a new contact"
+	  puts "[2] (Modify) an existing contact"
+	  puts "[3] (Delete) a contact"
+	  puts "[4] (Display all) the contacts"
+	  puts "[5] (Display) an attribute" 
+	  puts "[6] (Exit)"
+	  puts "\n"
+	  puts "Your selection: "
 	end
 
 
@@ -28,13 +32,19 @@ class CRM
 	def call_option(user_selected)
 	  @user_selected = user_selected
 	  case user_selected
-		when 1
+		when "1", "Add", "add"
 		add_new_contact
 
-		when 2
+		when "2", "Modify", "modify"
 	  	modify_existing_contact 
 
-	  	when 6
+	    when "3", "Delete", "delete"
+
+	    when "4", "Display all", "display all", "Display All"
+
+	    when "5", "Display", "display"
+
+	  	when "6", "Exit", "exit"
 	  	exit
 		else
 			raise
@@ -59,12 +69,15 @@ class CRM
 
 
 	def exit
-		puts "Are you sure you want to exit?"
-		answer = gets.chomp
+		puts "Are you sure you want to exit? (y/n)"
+		answer = gets.chomp.to_s
 		if answer == "y"
-			@exit = "true"
+			abort
+		elsif answer == "n"
+			@exit = false
 		else
-			@exit = "false"
+			puts "invalid command"
+			exit
 		end
 	end
 
@@ -72,7 +85,7 @@ class CRM
 
 	def main_menu
 	  print_main_menu
-	  user_selected = gets.to_i
+	  user_selected = gets.chomp
 	  call_option(user_selected)
 	rescue
 		puts "Error! Wrong input selected. Please try again."
@@ -80,9 +93,9 @@ class CRM
 end
 
 my_crm = CRM.new("My CRM")
-
-while @exit != "true"
+@exit = false
+while @exit == false
 my_crm.main_menu
 end
-puts my_crm.name
-puts my_crm.name = "Your mom's CRM!"
+
+
