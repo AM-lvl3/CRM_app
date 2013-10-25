@@ -30,21 +30,21 @@ class CRM
 
 
 	def call_option(user_selected)
-	  @user_selected = user_selected
+	  @user_selected = user_selected.upcase
 	  case user_selected
-		when "1", "Add", "add"
+		when "1", "ADD"
 		add_new_contact
 
-		when "2", "Modify", "modify"
+		when "2", "MODIFY"
 	  	modify_existing_contact 
 
-	    when "3", "Delete", "delete"
+	    when "3", "DELETE"
 
-	    when "4", "Display all", "display all", "Display All"
+	    when "4", "DISPLAY ALL"
 
-	    when "5", "Display", "display"
+	    when "5", "DISPLAY"
 
-	  	when "6", "Exit", "exit"
+	  	when "6", "EXIT"
 	  	exit
 		else
 			raise
@@ -70,10 +70,10 @@ class CRM
 
 	def exit
 		puts "Are you sure you want to exit? (y/n)"
-		answer = gets.chomp.to_s
-		if answer == "y"
+		answer = (gets.chomp.to_s).upcase
+		if answer == "Y" || answer == "YES"
 			abort
-		elsif answer == "n"
+		elsif answer == "N" || answer == "NO"
 			@exit = false
 		else
 			puts "invalid command"
@@ -85,7 +85,7 @@ class CRM
 
 	def main_menu
 	  print_main_menu
-	  user_selected = gets.chomp
+	  user_selected = (gets.chomp).upcase
 	  call_option(user_selected)
 	rescue
 		puts "Error! Wrong input selected. Please try again."
