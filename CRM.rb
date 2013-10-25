@@ -24,7 +24,7 @@ class CRM
 	  puts "[5] (Display) an attribute" 
 	  puts "[6] (Exit)"
 	  puts "\n"
-	  puts "Your selection: "
+	  print "Your selection: "
 	end
 
 
@@ -32,6 +32,7 @@ class CRM
 	def call_option(user_selected)
 	  @user_selected = user_selected.upcase
 	  case user_selected
+		
 		when "1", "ADD"
 		add_new_contact
 
@@ -40,18 +41,19 @@ class CRM
 
 	    when "3", "DELETE"
 	    delete_menu
+
 	    when "4", "DISPLAY ALL"
+	    diplay_all
 
 	    when "5", "DISPLAY"
+	    display
 
 	  	when "6", "EXIT"
 	  	exit
+
 		else
 			raise
 		end
-	  # Finish off and do the rest for 3 through 6
-	  # To be clear, the methods add_new_contact and modify_existing_contact
-	  # haven't been defined yet
 	end
 
 	def add_new_contact
@@ -69,6 +71,7 @@ class CRM
 
 def delete_menu
 	puts "Please type the contact id you would like to delete"
+	print "ID: "
 	@delete_choice = gets.chomp.to_i
 	delete
 end
