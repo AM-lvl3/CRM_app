@@ -1,4 +1,6 @@
 class Rolodex
+	  attr_accessor :contacts, :id
+
 	  @contacts = []
 	  @id = 1000
 

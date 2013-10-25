@@ -39,7 +39,7 @@ class CRM
 	  	modify_existing_contact 
 
 	    when "3", "DELETE"
-
+	    delete_menu
 	    when "4", "DISPLAY ALL"
 
 	    when "5", "DISPLAY"
@@ -67,6 +67,25 @@ class CRM
 	  Rolodex.add_contact(contact)
 	end
 
+def delete_menu
+	puts "Please type the contact id you would like to delete"
+	@delete_choice = gets.chomp.to_i
+	delete
+end
+	
+def delete
+		if  (1..9999999).include?(@delete_choice)
+		puts "!!!!!!!!!!!REMOVE ME!!!!!!!!!! -> ID selected"
+		#look up value - if value is an ID - confirm delete
+		#if value is not an ID, say re-enter
+
+		else
+		puts "That is not a valid id code. Returning to main menu."
+		puts "\n"
+
+		
+		end
+end
 
 	def exit
 		puts "Are you sure you want to exit? (y/n)"
@@ -81,19 +100,21 @@ class CRM
 		end
 	end
 
-
-
 	def main_menu
 	  print_main_menu
 	  user_selected = (gets.chomp).upcase
 	  call_option(user_selected)
 	rescue
-		puts "Error! Wrong input selected. Please try again."
+		puts "\n\n\n\n\n\n\n\n\n\n\n"
+		puts "\n\n\n\n\n\n\n\n\n\n\n"
+		puts "ERROR! Wrong input selected. Returning to main menu."
+		puts "\n\n\n\n\n\n\n\n\n\n\n"
 	end
 end
 
 my_crm = CRM.new("My CRM")
 @exit = false
+
 while @exit == false
 my_crm.main_menu
 end
