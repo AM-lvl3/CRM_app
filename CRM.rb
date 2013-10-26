@@ -1,7 +1,13 @@
 require_relative "CRM_contact" 
-require_relative "CRM_rolodex" 
+require_relative "CRM_Rolodex" 
 
-
+#DONE - main menu
+#DONE - add contact
+#DONE - exit
+#TO-DO - Modify
+#TO-DO - Delete
+#TO-DO - display all
+#TO-DO - display
 
 class CRM
 	attr_accessor :name, :exit
@@ -46,7 +52,7 @@ class CRM
 	    diplay_all
 
 	    when "5", "DISPLAY"
-	    display
+	    display_one
 
 	  	when "6", "EXIT"
 	  	exit
@@ -69,6 +75,27 @@ class CRM
 	  Rolodex.add_contact(contact)
 	end
 
+	def modify_existing_contact
+		puts "Please enter the ID of the contact you would like to modify."
+		print "ID: "
+		@ID_modify = gets.chomp.to_i
+		#TO-DO -> Display array or selected contact
+		#TO-DO -> give selections as to what to modify
+		#TO-DO -> save modifications to CRM_Rolodex
+	end
+
+	def display_all
+		#puts Rolodex.contacts
+		#TO-DO -> display table array
+		#TO-DO -> give option to go back to main menu
+	end
+
+	def display_one
+		#TO-DO -> display table array for one contact
+		#TO-DO -> give option to go back to main menu
+	end
+
+
 def delete_menu
 	puts "Please type the contact id you would like to delete"
 	print "ID: "
@@ -79,8 +106,8 @@ end
 def delete
 		if  (1..9999999).include?(@delete_choice)
 		puts "!!!!!!!!!!!REMOVE ME!!!!!!!!!! -> ID selected"
-		#look up value - if value is an ID - confirm delete
-		#if value is not an ID, say re-enter
+		#TO-DO -> look up value - if value is an ID - confirm delete
+		#TO-DO -> if value is not an ID, say re-enter
 
 		else
 		puts "That is not a valid id code. Returning to main menu."

@@ -9,4 +9,3 @@ class Contact
 	    @note = note
 	  end
 end
-
