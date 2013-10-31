@@ -1,5 +1,5 @@
-require_relative "CRM_contact" 
-require_relative "CRM_Rolodex" 
+require_relative "CRM_contact"
+require_relative "CRM_Rolodex"
 
 #DONE - main menu
 #DONE - add contact
@@ -9,17 +9,18 @@ require_relative "CRM_Rolodex"
 #TO-DO - display all
 #TO-DO - display
 
-class CRM
-	attr_accessor :name, :exit
+class Crm
+	
+attr_accessor :first_name, :last_name, :email, :notes, :client, :id
 
+	def initialize
+		"Welcome to My CRM"
 
-	def initialize(name)
-		@name = name
 	end
 
 
 	def print_main_menu
-	  puts "Welcome to #{name}!"
+	  puts "Welcome to Client Database (c)"
 	  puts "\n"
 	  puts "To make your selection you may enter a number or simply type the word displayed in brackets.\n"
 	  puts "\n"
@@ -57,96 +58,54 @@ class CRM
 	  	when "6", "EXIT"
 	  	exit
 
-		else
-			raise
+	  else
+	  	main_menu
 		end
 	end
 
 	def add_new_contact
+
 	  print "Enter First Name: "
-	  first_name = gets.chomp
+	  @first_name = gets.chomp
 	  print "Enter Last Name: "
-	  last_name = gets.chomp
+	  @last_name = gets.chomp
 	  print "Enter Email Address: "
-	  email = gets.chomp
+	  @email = gets.chomp
 	  print "Enter a Note: "
-	  note = gets.chomp
-	  contact = Contact.new(first_name, last_name, email, note)
-	  Rolodex.add_contact(contact)
-	end
-
-	def modify_existing_contact
-		puts "Please enter the ID of the contact you would like to modify."
-		print "ID: "
-		@ID_modify = gets.chomp.to_i
-		#TO-DO -> Display array or selected contact
-		#TO-DO -> give selections as to what to modify
-		#TO-DO -> save modifications to CRM_Rolodex
-	end
-
-	def display_all
-		#puts Rolodex.contacts
-		#TO-DO -> display table array
-		#TO-DO -> give option to go back to main menu
-	end
-
-	def display_one
-		#TO-DO -> display table array for one contact
-		#TO-DO -> give option to go back to main menu
-	end
-
-
-def delete_menu
-	puts "Please type the contact id you would like to delete"
-	print "ID: "
-	@delete_choice = gets.chomp.to_i
-	delete
-end
-	
-def delete
-		if  (1..9999999).include?(@delete_choice)
-		puts "!!!!!!!!!!!REMOVE ME!!!!!!!!!! -> ID selected"
-		#TO-DO -> look up value - if value is an ID - confirm delete
-		#TO-DO -> if value is not an ID, say re-enter
-
-		else
-		puts "That is not a valid id code. Returning to main menu."
-		puts "\n"
-
-		
-		end
-end
-
-	def exit
-		puts "Are you sure you want to exit? (y/n)"
-		answer = (gets.chomp.to_s).upcase
-		if answer == "Y" || answer == "YES"
-			abort
-		elsif answer == "N" || answer == "NO"
-			@exit = false
-		else
-			puts "invalid command"
-			exit
-		end
+	  @notes = gets.chomp
+	  new_contact = Contact.new(first_name, last_name, email, notes)
+	  
 	end
 
 	def main_menu
-	  print_main_menu
-	  user_selected = (gets.chomp).upcase
-	  call_option(user_selected)
-	rescue
-		puts "\n\n\n\n\n\n\n\n\n\n\n"
-		puts "\n\n\n\n\n\n\n\n\n\n\n"
+		  print_main_menu
+		  user_selected = (gets.chomp).upcase
+		  call_option(user_selected)
 		puts "ERROR! Wrong input selected. Returning to main menu."
-		puts "\n\n\n\n\n\n\n\n\n\n\n"
+		main_menu
 	end
+
 end
 
-my_crm = CRM.new("My CRM")
-@exit = false
+database = Crm.new
+database.main_menu
 
-while @exit == false
-my_crm.main_menu
-end
+# rescue toyota = Car.new
+# toyota.top_speed=("130 km/h")
+
+# mazda = Car.new
+# mazda.top_speed=("130 km/h")
+
+# parking = Warehouse.new
+# parking.add_car(mazda)
+# p parking.garage[0]
+
+# #to modify the top speed -> think CRM
+# #mazda.top_speed = #{variable}
+
+
+
+
+
 
 

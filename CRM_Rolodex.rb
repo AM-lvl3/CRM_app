@@ -1,20 +1,30 @@
+
+
 class Rolodex
-	  attr_accessor :contacts, :id
+@@DB = []
+attr_reader :client
 
-	  @contacts = []
-	  @id = 1000
+	def initialize(client)
+	@client = client
+	add_to_rolo
+	
+	end
 
-	  def self.add_contact(contact)
-	    contact.id = @id
-	    @contacts << contact
-	    @id += 1
-	  end
+	def add_to_rolo
 
-def self.id
-@contacts
-end
 
-	  def self.contacts
-	    @contacts
-	  end
+	@@DB.push(@client)
+			puts "________db________________________"
+	p @@DB
+			puts "________db plus root________________________"
+
+		puts @@DB[0][0]
+	print "_________first client_______________________"	
+			puts @@DB[1][0]
+	print "_________second client_______________________"	
+			puts @@DB[2][0]
+	print "_________third client_______________________"	
+
+	end
+
 end
