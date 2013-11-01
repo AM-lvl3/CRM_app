@@ -1,9 +1,17 @@
 require_relative "CRM_contact"
 require_relative "CRM_Rolodex"
 
-#DONE - main menu
-#DONE - add contact
-#DONE - exit
+#TO-DO - function - main menu
+#TO-DO - function - add contact - DONE
+#TO-DO - function - exit
+#TO-DO - function - Modify
+#TO-DO - function - Delete
+#TO-DO - function - display all
+#TO-DO - function - display
+
+#TO-DO - main menu
+#TO-DO - add contact
+#TO-DO - exit
 #TO-DO - Modify
 #TO-DO - Delete
 #TO-DO - display all
@@ -11,25 +19,25 @@ require_relative "CRM_Rolodex"
 
 class Crm
 	
-attr_accessor :first_name, :last_name, :email, :notes, :client, :id
+attr_accessor :first_name, :last_name, :email, :notes, :client, :id, :modify_id, :exit
 
 	def initialize
 		"Welcome to My CRM"
-
+		
 	end
 
 
 	def print_main_menu
 	  puts "Welcome to Client Database (c)"
 	  puts "\n"
-	  puts "To make your selection you may enter a number or simply type the word displayed in brackets.\n"
+	  puts "To make your selection please enter a number.\n"
 	  puts "\n"
-	  puts "[1] (Add) a new contact"
-	  puts "[2] (Modify) an existing contact"
-	  puts "[3] (Delete) a contact"
-	  puts "[4] (Display all) the contacts"
-	  puts "[5] (Display) an attribute" 
-	  puts "[6] (Exit)"
+	  puts "[1] Add a new contact"
+	  puts "[2] Modify an existing contact"
+	  puts "[3] Delete a contact"
+	  puts "[4] Display all the contacts"
+	  puts "[5] Display one contact" 
+	  puts "[6] Exit"
 	  puts "\n"
 	  print "Your selection: "
 	end
@@ -44,16 +52,17 @@ attr_accessor :first_name, :last_name, :email, :notes, :client, :id
 		add_new_contact
 
 		when "2", "MODIFY"
-	  	modify_existing_contact 
-
-	    when "3", "DELETE"
-	    delete_menu
+	
+		Rolodex.modify
+	  	
+	  	when "3", "DELETE"
+	    Rolodex.delete
 
 	    when "4", "DISPLAY ALL"
-	    diplay_all
+	    Rolodex.display_all
 
 	    when "5", "DISPLAY"
-	    display_one
+	    Rolodex.display_one
 
 	  	when "6", "EXIT"
 	  	exit
@@ -74,14 +83,17 @@ attr_accessor :first_name, :last_name, :email, :notes, :client, :id
 	  print "Enter a Note: "
 	  @notes = gets.chomp
 	  new_contact = Contact.new(first_name, last_name, email, notes)
-	  
+
+	end
+
+	def exit
+		abort
 	end
 
 	def main_menu
 		  print_main_menu
 		  user_selected = (gets.chomp).upcase
 		  call_option(user_selected)
-		puts "ERROR! Wrong input selected. Returning to main menu."
 		main_menu
 	end
 
@@ -102,10 +114,22 @@ database.main_menu
 
 # #to modify the top speed -> think CRM
 # #mazda.top_speed = #{variable}
+#___________________
+#Passing from one class method to another with data
+# class Rolodex
+#   def modify
+#     puts Modifying contact
+#   end
+# end
 
+# class CRM
+#   def selected_modify(start_rolodex)
+#      start_rolodex.modify
+#   end
+# end
 
-
-
+# start_rolodex = Rolodex.new
+# CRM = CRM.new
 
 
 

@@ -14,19 +14,18 @@ attr_accessor :client
 		   @email = email
 		   @notes = notes
 			@client = []
-		id_tracker
+			id_tracker
 
 	  end
 
 
 		def id_tracker
 
-		@client_id = @@id - 1000
-		@client[@client_id] = [@first_name, @last_name, @email, @notes]
+	
+		@client = [@@id, @first_name, @last_name, @email, @notes]
 		@@id = @@id + 1
-		p @client
-		puts "_________contact_______________________"
-		start_rolodex = Rolodex.new(client)
+		
+		Rolodex.add_to_rolo(client)
 
 		end
 
